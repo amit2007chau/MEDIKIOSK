@@ -2,7 +2,7 @@
 
 Revision ID: b04a1273137c
 Revises: 0001_initial
-Create Date: 
+Create Date:
 """
 
 from alembic import op
@@ -20,13 +20,17 @@ def upgrade():
     bind = op.get_bind()
     inspector = sa.inspect(bind)
 
+    # Get the columns that already exist in the patients table.
     columns = {
         column["name"]
         for column in inspector.get_columns("patients")
     }
 
-    # user_id may already exist in the initial schema.
-    # Add it only when it is actually missing.
+    # ---------------------------------------------------------
+    # user_id
+    # ---------------------------------------------------------
+    # The initial migration may already create this column.
+    # Add it only if it is actually missing.
     if "user_id" not in columns:
         op.add_column(
             "patients",
@@ -37,7 +41,10 @@ def upgrade():
             ),
         )
 
-    # Add address only if it does not already exist.
+    # ---------------------------------------------------------
+    # address
+    # ---------------------------------------------------------
+    # Add only if the column does not already exist.
     if "address" not in columns:
         op.add_column(
             "patients",
@@ -49,7 +56,10 @@ def upgrade():
             ),
         )
 
-    # Add preferred_language only if it does not already exist.
+    # ---------------------------------------------------------
+    # preferred_language
+    # ---------------------------------------------------------
+    # Add only if the column does not already exist.
     if "preferred_language" not in columns:
         op.add_column(
             "patients",
@@ -64,7 +74,9 @@ def upgrade():
     # Refresh schema information after possible column additions.
     inspector = sa.inspect(bind)
 
-    # Create the unique user_id index only if it is missing.
+    # ---------------------------------------------------------
+    # user_id unique index
+    # ---------------------------------------------------------
     existing_indexes = {
         index["name"]
         for index in inspector.get_indexes("patients")
@@ -78,8 +90,9 @@ def upgrade():
             unique=True,
         )
 
-    # Create the users(id) -> patients(user_id) relationship only if
-    # an equivalent foreign key does not already exist.
+    # ---------------------------------------------------------
+    # user_id foreign key
+    # ---------------------------------------------------------
     inspector = sa.inspect(bind)
     foreign_keys = inspector.get_foreign_keys("patients")
 
@@ -98,7 +111,10 @@ def upgrade():
             ["id"],
         )
 
-    # Remove temporary database-level defaults.
+    # ---------------------------------------------------------
+    # Remove temporary server defaults.
+    # ---------------------------------------------------------
+    # Only remove them when these columns are present.
     if "address" in columns:
         op.alter_column(
             "patients",
@@ -113,81 +129,60 @@ def upgrade():
             server_default=None,
         )
 
-    # Existing patients need valid values when these columns are added.
-    # Temporary server defaults allow the migration to succeed safely.
-    op.add_column(
-        "patients",
-        sa.Column(
-            "address",
-            sa.String(length=500),
-            nullable=False,
-            server_default="",
-        ),
-    )
-
-    op.add_column(
-        "patients",
-        sa.Column(
-            "preferred_language",
-            sa.String(length=20),
-            nullable=False,
-            server_default="en",
-        ),
-    )
-
-    op.create_index(
-        "ix_patients_user_id",
-        "patients",
-        ["user_id"],
-        unique=True,
-    )
-
-    op.create_foreign_key(
-        None,
-        "patients",
-        "users",
-        ["user_id"],
-        ["id"],
-    )
-
-    # Remove the temporary database-level defaults.
-    # The SQLAlchemy model still provides application-level defaults.
-    op.alter_column(
-        "patients",
-        "address",
-        server_default=None,
-    )
-
-    op.alter_column(
-        "patients",
-        "preferred_language",
-        server_default=None,
-    )
-
 
 def downgrade():
-    op.drop_constraint(
-        None,
-        "patients",
-        type_="foreignkey",
-    )
+    bind = op.get_bind()
+    inspector = sa.inspect(bind)
 
-    op.drop_index(
-        "ix_patients_user_id",
-        table_name="patients",
-    )
+    columns = {
+        column["name"]
+        for column in inspector.get_columns("patients")
+    }
 
-    op.drop_column(
-        "patients",
-        "preferred_language",
-    )
+    # Remove foreign key if it exists.
+    foreign_keys = inspector.get_foreign_keys("patients")
 
-    op.drop_column(
-        "patients",
-        "address",
-    )
+    for fk in foreign_keys:
+        if (
+            fk.get("referred_table") == "users"
+            and "user_id" in fk.get("constrained_columns", [])
+        ):
+            constraint_name = fk.get("name")
 
-    op.drop_column(
-        "patients",
-        "user_id",
-    )
+            if constraint_name:
+                op.drop_constraint(
+                    constraint_name,
+                    "patients",
+                    type_="foreignkey",
+                )
+
+    # Remove index if it exists.
+    existing_indexes = {
+        index["name"]
+        for index in inspector.get_indexes("patients")
+    }
+
+    if "ix_patients_user_id" in existing_indexes:
+        op.drop_index(
+            "ix_patients_user_id",
+            table_name="patients",
+        )
+
+    # Remove columns only if they exist.
+    if "preferred_language" in columns:
+        op.drop_column(
+            "patients",
+            "preferred_language",
+        )
+
+    if "address" in columns:
+        op.drop_column(
+            "patients",
+            "address",
+        )
+
+    if "user_id" in columns:
+        op.drop_column(
+            "patients",
+            "user_id",
+        )
