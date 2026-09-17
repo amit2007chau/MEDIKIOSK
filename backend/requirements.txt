@@ -11,3 +11,4 @@ minio==7.2.12
 alembic==1.14.0
 pytest==8.3.4
 httpx==0.28.1
+psycopg2-binary==2.9.10
