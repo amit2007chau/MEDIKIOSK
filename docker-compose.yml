@@ -1,0 +1,62 @@
+﻿services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: medikiosk
+      POSTGRES_USER: medikiosk
+      POSTGRES_PASSWORD: medikiosk
+    ports: ["5435:5432"]
+    volumes: ["postgres_data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medikiosk -d medikiosk"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  redis:
+    image: redis:7-alpine
+    ports: ["6381:6379"]
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: medikiosk
+      MINIO_ROOT_PASSWORD: medikiosk-demo-secret
+    ports: ["9002:9000", "9003:9001"]
+    volumes: ["minio_data:/data"]
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://medikiosk:medikiosk@postgres:5432/medikiosk
+      REDIS_URL: redis://redis:6379/0
+      MINIO_ENDPOINT: minio:9000
+      JWT_SECRET: replace-this-development-secret-before-deploying
+      CORS_ORIGINS: http://localhost:3000,http://localhost:3001,http://localhost:3002
+    ports: ["8000:8000"]
+    depends_on: [postgres, redis, minio]
+    volumes: ["./backend/uploads:/app/uploads"]
+  patient-kiosk:
+    build: ./apps/patient-kiosk
+    ports: ["3000:80"]
+    depends_on: [backend]
+  doctor-dashboard:
+    build: ./apps/doctor-dashboard
+    ports: ["3001:80"]
+    depends_on: [backend]
+  staff-dashboard:
+    build: ./apps/staff-dashboard
+    ports: ["3002:80"]
+    depends_on: [backend]
+
+  portal:
+    image: nginx:alpine
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./portal:/usr/share/nginx/html:ro
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  minio_data:
+
+

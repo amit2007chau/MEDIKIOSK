@@ -1,0 +1,2 @@
+"""MediKiosk application package."""
+

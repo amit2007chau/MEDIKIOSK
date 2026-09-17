@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap');
+:root{font-family:'DM Sans',sans-serif;color:#183c40;background:#f3f8f6}*{box-sizing:border-box}body{margin:0}.kiosk{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(circle at 78% 25%,#d9f2e9 0,#f5faf8 35%,#edf5f2 100%)}header,footer{width:min(1120px,calc(100% - 48px));margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:700;letter-spacing:.8px;padding:28px 0}.brand-mark{background:#176f67;color:white;border-radius:13px;padding:8px;display:flex}.brand span span{color:#176f67}.secure{display:flex;gap:7px;align-items:center;font-size:14px;color:#376967}footer{font-size:12px;color:#60827f;padding:25px 0;gap:15px}.hero,.step,.interview{width:min(900px,calc(100% - 48px));margin:auto;flex:1;display:flex;justify-content:center;flex-direction:column}.hero{align-items:center;text-align:center;min-height:620px}.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.5px;color:#168177;margin-bottom:13px}.hero h1{font-family:Fraunces,serif;font-weight:500;font-size:clamp(42px,6vw,70px);line-height:1.04;margin:0;color:#174247}.hero em{font-style:normal;color:#14776d}.hero p,.step>p{font-size:18px;color:#587775;max-width:550px;line-height:1.6}.hero p{text-align:center}.primary,.secondary,.language,.patient,.options button,.voice,.icon-button{border:0;border-radius:14px;font:inherit;font-weight:700;cursor:pointer;transition:.18s}.primary{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#146d64;color:white;padding:16px 24px;box-shadow:0 10px 20px #146d6433;text-decoration:none}.primary:hover{background:#0f5750;transform:translateY(-1px)}.primary:disabled{opacity:.55;cursor:wait}.start{font-size:19px;padding:19px 32px;margin:22px}.privacy{display:flex;gap:8px;align-items:center;color:#547371;font-size:14px;line-height:1.5}.step{max-width:760px;padding:36px 0}.step h2,.interview h2{font-family:Fraunces,serif;font-size:42px;font-weight:500;margin:0 0 8px;color:#174247}.language-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0}.language{background:white;padding:32px;text-align:left;display:grid;gap:8px;color:#174247;border:1px solid #d8e9e4}.language svg{color:#168177}.language strong{font-size:22px}.language small,.patient small{color:#62807e}.language:hover,.patient:hover{border-color:#168177;box-shadow:0 8px 18px #176f6711}.text-button{align-self:flex-start;border:0;background:transparent;color:#176f67;font-weight:700;cursor:pointer;padding:10px 0}.patient-list{display:grid;gap:10px;margin:23px 0}.patient{background:#fff;padding:15px 18px;display:flex;gap:14px;align-items:center;text-align:left;border:1px solid #d8e9e4;color:#174247}.patient>span:nth-child(2){display:grid;gap:3px;flex:1}.avatar{background:#d9f0e9;border-radius:50%;width:42px;height:42px;display:grid;place-items:center;color:#176f67}.consent-card{background:white;border:1px solid #d8e9e4;border-radius:18px;padding:24px;display:grid;gap:18px;margin:20px 0}.consent-card>svg{color:#168177}.consent-card div{display:grid;gap:4px}.consent-card span{color:#5e7a79;line-height:1.45}.action-row{display:flex;gap:12px}.secondary{padding:15px 22px;background:#e1ece9;color:#285a57}.interview{max-width:790px;padding:28px 0}.progress{font-size:12px;font-weight:700;letter-spacing:1px;color:#3d706b;margin-bottom:24px}.progress div{height:7px;border-radius:5px;background:#d8e9e4;margin-top:9px;overflow:hidden}.progress i{height:100%;display:block;background:#168177;border-radius:5px}.spoken{height:25px;color:#52837b}.options{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.options button{background:#fff;border:1px solid #d3e6e0;padding:12px 17px;color:#245e5b}.options .selected{background:#d8f1e9;border-color:#168177;color:#146d64}.answer-input{display:grid;gap:7px;font-size:14px;color:#47736e;margin-top:14px}.answer-input textarea{resize:vertical;min-height:72px;border:1px solid #cce0da;border-radius:12px;padding:12px;font:inherit}.voice-row{display:flex;gap:10px;margin:14px 0}.voice{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;background:#fff;border:1px solid #168177;color:#146d64}.icon-button{padding:10px;background:#e0efeb;color:#146d64}.wide{width:100%;font-size:17px}.upload{margin-top:19px;padding-top:18px;border-top:1px solid #d7e8e3;display:grid;gap:8px}.upload label{font-weight:700;color:#176f67;display:flex;gap:9px;align-items:center;cursor:pointer}.upload input{display:none}.upload small{color:#5b7f7b}.notice{color:#815d00;background:#fff6d7;border-radius:10px;padding:10px;margin:12px 0}.error{background:#fce4e3;color:#9e342e;padding:12px;border-radius:10px;margin:12px 0}.complete{text-align:center;align-items:center}.complete p{max-width:550px}.success{color:#188074;background:#d8f1e9;border-radius:50%;padding:20px;display:flex;margin:15px}.loader{width:26px;height:26px;border:3px solid #d4e8e2;border-top-color:#146d64;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:12px}@keyframes spin{to{transform:rotate(360deg)}}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid #efb849;outline-offset:3px}@media(max-width:620px){header,footer,.hero,.step,.interview{width:calc(100% - 30px)}footer{display:block}.secure{font-size:12px}.language-grid{grid-template-columns:1fr}.hero h1{font-size:42px}.step h2,.interview h2{font-size:32px}}
+
+
+/* =========================================================
+   MEDIKIOSK PATIENT AUTH UI
+   UI ONLY - does not change authentication behaviour
+   ========================================================= */
+
+.patient-auth {
+  position: relative;
+  width: min(100%, 820px);
+  margin: 48px auto 70px;
+  padding: 42px 48px 46px;
+  border: 1px solid rgba(126, 224, 210, 0.16);
+  border-radius: 28px;
+  background:
+    radial-gradient(
+      circle at 85% 8%,
+      rgba(92, 214, 198, 0.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(16, 48, 43, 0.98),
+      rgba(8, 30, 27, 0.98)
+    );
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  overflow: hidden;
+}
+
+/* Decorative glow */
+.patient-auth::before {
+  content: "";
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: -150px;
+  right: -100px;
+  border-radius: 50%;
+  background: rgba(102, 225, 210, 0.12);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+.patient-auth > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Heading */
+.patient-auth h2 {
+  max-width: 680px;
+  margin: 10px 0 10px;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.patient-auth > p {
+  max-width: 620px;
+  margin-bottom: 30px;
+  color: rgba(239, 247, 244, 0.68);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* Small portal label */
+.patient-auth .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid rgba(110, 225, 210, 0.18);
+  border-radius: 999px;
+  background: rgba(86, 214, 199, 0.07);
+  color: #79ddd0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+/* Forms */
+.patient-auth form {
+  margin-top: 26px;
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  background: rgba(3, 19, 17, 0.30);
+}
+
+/* Form labels */
+.patient-auth .answer-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.patient-auth .answer-input > span {
+  color: rgba(239, 247, 244, 0.84);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Inputs */
+.patient-auth input,
+.patient-auth select,
+.patient-auth textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(192, 231, 224, 0.15);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.055);
+  color: #f3f8f6;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+/* Text inputs */
+.patient-auth input,
+.patient-auth select {
+  min-height: 48px;
+  padding: 0 15px;
+}
+
+/* Textarea */
+.patient-auth textarea {
+  min-height: 90px;
+  padding: 13px 15px;
+  resize: vertical;
+}
+
+/* Placeholder */
+.patient-auth input::placeholder,
+.patient-auth textarea::placeholder {
+  color: rgba(232, 244, 241, 0.35);
+}
+
+/* Focus */
+.patient-auth input:focus,
+.patient-auth select:focus,
+.patient-auth textarea:focus {
+  border-color: rgba(100, 221, 207, 0.72);
+  background: rgba(255, 255, 255, 0.075);
+  box-shadow:
+    0 0 0 3px rgba(86, 214, 199, 0.10),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Select dropdown */
+.patient-auth select {
+  cursor: pointer;
+}
+
+/* Main authentication button */
+.patient-auth .primary.wide {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 8px;
+  border-radius: 12px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.patient-auth .primary.wide:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 34px rgba(0, 0, 0, 0.22);
+  filter: brightness(1.05);
+}
+
+.patient-auth .primary.wide:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.patient-auth .primary.wide:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Bottom actions */
+.patient-auth .action-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 24px !important;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Create account / sign in switch */
+.patient-auth .action-row .secondary {
+  min-height: 44px;
+  border-radius: 10px;
+  padding: 0 17px;
+  font-weight: 750;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
+}
+
+.patient-auth .action-row .secondary:hover {
+  transform: translateY(-1px);
+}
+
+/* Demo option */
+.patient-auth .action-row .text-button {
+  min-height: 44px;
+  padding: 0 8px;
+  color: rgba(123, 221, 208, 0.95);
+  font-weight: 700;
+}
+
+.patient-auth .action-row .text-button:hover {
+  color: #9be9df;
+}
+
+/* Error / success */
+.patient-auth .error,
+.patient-auth .notice {
+  margin: 18px 0;
+  border-radius: 12px;
+  padding: 13px 15px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Registration grid */
+.patient-auth form > div[style] {
+  margin-bottom: 2px;
+}
+
+/* Registration fields look slightly tighter */
+.patient-auth form > div[style] .answer-input {
+  margin-bottom: 16px;
+}
+
+/* Password section */
+.patient-auth form .answer-input:last-of-type {
+  margin-bottom: 16px;
+}
+
+/* Login page visual breathing room */
+.patient-auth form:has(input[type="email"]:only-child) {
+  max-width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .patient-auth {
+    width: auto;
+    margin: 25px 14px 50px;
+    padding: 30px 20px 28px;
+    border-radius: 22px;
+  }
+
+  .patient-auth h2 {
+    font-size: 32px;
+  }
+
+  .patient-auth form {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .patient-auth form > div[style] {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  .patient-auth .action-row {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .patient-auth .action-row .secondary,
+  .patient-auth .action-row .text-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .patient-auth {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 25px 15px;
+  }
+
+  .patient-auth h2 {
+    font-size: 28px;
+  }
+
+  .patient-auth form {
+    padding: 16px 13px;
+  }
+}
